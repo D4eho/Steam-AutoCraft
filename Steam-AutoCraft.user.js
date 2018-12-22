@@ -1,13 +1,12 @@
 // ==UserScript==
 // @name         Steam-AutoCraft
-// @namespace    http://10101000.redirectme.net/
-// @version      1.1
-// @description  AutoCraft Badges inside Steam
-// @author       10101000 aka Ryan Steed
+// @version      1.1.1
+// @description  AutoCraft Badges of Specific Games in Steam
+// @author       Lamanus (D4eho)
 // @match        *://steamcommunity.com/*/gamecards/*
-// @require      https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js
-// @copyright    2015 10101000 (Ryan Steed)
-// @grant        none
+// @require      https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js
+// @downloadURL  https://raw.githubusercontent.com/D4eho/Steam-AutoCraft/master/Steam-AutoCraft.user.js
+// @updateURL    https://raw.githubusercontent.com/D4eho/Steam-AutoCraft/master/Steam-AutoCraft.user.js
 // ==/UserScript==
 
 // Isolate jQuery for compatibility with other scripts
@@ -20,11 +19,9 @@ jQuery(document).ready(function(){
     if (jQuery('.badge_card_to_collect').length === 0){
         checkBadge();
     }
-
     if (craftBadgeState == 1){
         addButton();
     }
-    
     if (window.sessionStorage.autoCraftState){
         autoCraft();
     }
@@ -32,8 +29,8 @@ jQuery(document).ready(function(){
 
 function addButton(){
     if (invLinks){
-        invLinks.append('<a><button type="button" class="btn_grey_grey btn_small_thin" id="autocraft"><span>AutoCraft remaining badges</span></button></a>');
-        jQuery('#autocraft').click(function(){ autoCraft(); });
+        invLinks.append('<a class="btn_grey_grey btn_medium autocraft"><span>AutoCraft remaining badges</span></a>');
+        jQuery('.autocraft').click(function(){ autoCraft(); });
     }
 }
 
@@ -44,13 +41,13 @@ function checkBadge(){
         delete window.sessionStorage.autoCraftState;
     }
 }
-    
+
 function craftBadge(){
     jQuery('.badge_craft_button').click();
 }
-                      
+
 function autoCraft(){
     craftBadge();
-    setTimeout(function(){ checkBadge(); window.location.reload(true); }, 10000);
+    setTimeout(function(){ checkBadge(); window.location.reload(true); }, 10);
     window.sessionStorage.autoCraftState = 1;
 }
