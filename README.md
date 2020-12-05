@@ -1,6 +1,6 @@
 ### Summary
 
-Steam-AutoCraft is originally made by 10101000. I'd folk AutoCraft to modify for personal use.
+Steam-AutoCraft is originally made by 10101000. This is for personal use.
 
 ### Usage
 
